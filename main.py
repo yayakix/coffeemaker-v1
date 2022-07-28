@@ -34,14 +34,12 @@ def get_report():
     print(resources)
     print(money)
 def check_ingredients(coffee):
-    ingredients_good = True
     for x in coffee['ingredients']:
         if resources[x] - coffee['ingredients'][x] > 0:
             print('there is enough')
             return True
         else:
             print(f'there is not enough {x}')
-            ingredients_good = False
             break
 def make_payment(coffee):
     global money
@@ -54,8 +52,7 @@ def make_payment(coffee):
     money = money + cost
     change = total_payment - cost
     print(f'Your change is ${change}.')
-    # change = total_payment - coffee['cost']
-    # print(total_payment)
+
     if total_payment >= MENU[coffee]['cost']:
         return True
     else:
@@ -63,7 +60,6 @@ def make_payment(coffee):
         return False
 
 def make_coffee(coffee, coffeename):
-    # print(coffee['ingredients'])
     for x in coffee['ingredients']:
         resources[x] = resources[x] - coffee['ingredients'][x]
     print(f'Here is your {coffeename}')
